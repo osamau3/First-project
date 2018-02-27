@@ -10,7 +10,7 @@ export class RecipeService {
         new Ingredient('fish', 1),
         new Ingredient('beard', 5)
       ]),
-    new Recipe('A test recipe 2', 'Description test 2', 'https://static01.nyt.com/images/2015/08/14/dining/14ROASTEDSALMON/14ROASTEDSALMON-articleLarge.jpg',
+    new Recipe('A test recipe 2', 'Description test 2', 'http://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/1506120378/MR_0917170472.jpg',
       [
         new Ingredient('meat', 2),
         new Ingredient('fresh firze', 12)
