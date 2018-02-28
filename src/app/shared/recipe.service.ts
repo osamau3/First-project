@@ -1,9 +1,11 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Recipe } from '../recipes/recipe.model';
 import { Ingredient } from './ingredient.model';
+import { Subject } from 'rxjs/Subject';
 
 export class RecipeService {
-  recipeSelected = new EventEmitter<Recipe>();
+  recipeSelected = new Subject<Recipe>();
+  index : number;
   private recipes: Recipe[] = [
     new Recipe('A test recipe 1', 'Description test 1', 'https://static01.nyt.com/images/2015/08/14/dining/14ROASTEDSALMON/14ROASTEDSALMON-articleLarge.jpg',
       [
@@ -22,7 +24,10 @@ export class RecipeService {
   getRecipes() {
     return this.recipes.slice();
   }
+  getRecipe(index) {
+    return this.recipes[index];
+  }
   getselectedRecipe(recipe: Recipe) {
-    return this.recipeSelected.emit(recipe);
+    return this.recipeSelected.next(recipe);
   }
 }
