@@ -4,7 +4,8 @@ import { Ingredient } from './ingredient.model';
 import { Subject } from 'rxjs/Subject';
 
 export class RecipeService {
-  recipeSelected = new Subject<Recipe>();
+  recipesChanged = new Subject<Recipe[]>();
+
   index : number;
   private recipes: Recipe[] = [
     new Recipe('A test recipe 1', 'Description test 1', 'https://static01.nyt.com/images/2015/08/14/dining/14ROASTEDSALMON/14ROASTEDSALMON-articleLarge.jpg',
@@ -27,7 +28,16 @@ export class RecipeService {
   getRecipe(index) {
     return this.recipes[index];
   }
-  getselectedRecipe(recipe: Recipe) {
-    return this.recipeSelected.next(recipe);
+  addRecipe(recipe : Recipe){
+    this.recipes.push(recipe);
+    this.recipesChanged.next(this.recipes.slice());
+  }
+  updateRecipe(index : number , recipe : Recipe){
+    this.recipes[index] = recipe;
+    this.recipesChanged.next(this.recipes.slice());
+  }
+  deleteRecipe(index : number){
+    this.recipes.splice(index , 1);
+    this.recipesChanged.next(this.recipes.slice());
   }
 }
